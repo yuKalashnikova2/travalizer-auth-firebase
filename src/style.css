@@ -1,0 +1,13 @@
+:root {
+  --green-main: #355B3E;
+  --green-second: #029664;
+  --green-light: #B8D6BF;
+  --green-text: #58745E;
+  --beige: #F5DBC4;
+  --blue-dark: #2F3D4C;
+  --white: #FFF;
+}
+
+body {
+  background-color: var(--green-main);
+}
