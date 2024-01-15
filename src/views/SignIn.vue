@@ -1,5 +1,144 @@
+<script>
+export default {
+  data() {
+    return {
+      checked: {
+        type: Boolean,
+        required: true,
+      },
+    }
+  },
+}
+</script>
+
 <template>
-    <div>
-       <h2>Page of auth</h2> 
-    </div>
+  <div class="signin">
+    <span class="signin__text">Welcome Back, Please login to your account</span>
+
+    <form class="signin__form">
+      <div class="signin__form-inputs">
+        <label class="signin__form-label">
+          Email
+          <input
+            class="input"
+            type="text"
+            placeholder="robert.langster@gmail.com"
+          />
+        </label>
+        <div class="signin__form-label">
+          <label for="password" class="signin__form-label_green-text">
+            Password
+          </label>
+          <input
+            class="input"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+          />
+        </div>
+      </div>
+
+      <div class="signin__form-checkbox">
+        <label class="signin__form-checkbox__label">
+          <div
+            :class="[
+              'input-checkbox',
+              checked ? 'input-checkbox__checked' : '',
+            ]"
+          >
+            <input
+              type="checkbox"
+              :checked="checked"
+              name="name"
+              value="value"
+              @click="checked = !checked"
+            />
+          </div>
+
+          <div class="signin__form-checkbox__label-text">Remember me</div>
+        </label>
+
+        <span class="signin__form-checkbox__forgot">Forgot password?</span>
+      </div>
+    </form>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+.signin {
+  margin-top: 16px;
+  &__form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  &__form-label {
+    color: var(--blue-dark);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    &_green-text {
+      color: var(--green-main);
+    }
+  }
+  &__form-checkbox {
+    display: flex;
+    justify-content: space-between;
+    &__label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      &-text {
+        color: var(--green-main);
+
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 100%;
+      }
+    }
+    &__forgot {
+      color: var(--green-main);
+      text-align: right;
+
+      font-size: 16px;
+
+      font-weight: 400;
+      line-height: 100%;
+      text-decoration-line: underline;
+      cursor: pointer;
+    }
+  }
+  &__text {
+    color: var(--green-text);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+    display: block;
+    padding-bottom: 32px;
+  }
+}
+.input {
+  border-radius: 8px;
+  border: 1px solid var(--green-light);
+  background: #fff;
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  &-checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--green-light);
+    border-radius: 3px;
+    &__checked {
+      background: url('/checkbox-checked.svg');
+      background-size: 100%;
+    }
+  }
+}
+</style>
