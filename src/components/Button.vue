@@ -28,10 +28,21 @@ export default {
   font-size: 16px;
   font-weight: 600;
   line-height: 100%;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid var(--green-second);
+    background: var(--white);
+    color: var(--green-second);
+  }
   &__light {
     border: 1px solid var(--green-second);
     background: var(--white);
     color: var(--green-second);
+    &:hover {
+      background: var(--green-second);
+      border: 1px solid var(--green-second);
+      color: var(--white);
+    }
   }
 }
 </style>

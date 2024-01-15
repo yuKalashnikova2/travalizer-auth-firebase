@@ -1,9 +1,9 @@
 <script>
-import Button from '../components/Button.vue';
+import Button from '../components/Button.vue'
 export default {
-    components: {
-        Button
-    },
+  components: {
+    Button,
+  },
   data() {
     return {
       checked: {
@@ -67,10 +67,18 @@ export default {
 
       <div class="signin__form-buttons">
         <Button label="Login" />
-        <Button label="Sign Up" lightColor  />
+        <Button label="Sign Up" lightColor />
       </div>
-     
     </form>
+
+    <div class="signin__social">
+      <span class="signin__social-name">Or, login with</span>
+      <span class="signin__social-name signin__social-name_bold">Facebook</span>
+      <span class="signin__social-name signin__social-name_bold"
+        >Linked In</span
+      >
+      <span class="signin__social-name signin__social-name_bold">Google</span>
+    </div>
   </div>
 </template>
 
@@ -135,6 +143,32 @@ export default {
     line-height: 100%;
     display: block;
     padding-bottom: 32px;
+  }
+  &__social {
+    display: flex;
+    gap: 24px;
+    margin-top: 56px;
+   
+    @media (max-width: 767px) {
+        margin-top: 40px;
+        flex-wrap: wrap;
+    }
+    &-name {
+      display: block;
+      color: var(--green-text);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 100%;
+   
+      &_bold {
+        color: var(--green-main);
+        font-weight: 500;
+        &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+      }
+    }
   }
 }
 .input {
