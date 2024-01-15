@@ -24,3 +24,6 @@ body {
 input {
   all: unset;
 }
+.width {
+  width: 100%;
+}

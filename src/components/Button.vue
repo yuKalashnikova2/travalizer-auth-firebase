@@ -19,7 +19,6 @@ export default {
 <style lang="scss" scoped>
 .btn {
   padding: 16px;
-  width: 100%;
   border-radius: 8px;
   background: var(--green-second);
   border: 1px solid var(--green-second);
@@ -28,6 +27,7 @@ export default {
   font-size: 16px;
   font-weight: 600;
   line-height: 100%;
+    width: 100%;
   cursor: pointer;
   &:hover {
     border: 1px solid var(--green-second);
