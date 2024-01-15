@@ -17,6 +17,7 @@ export default {
 
 <template>
   <div class="signin">
+    <span class="text">Artificial Intelligence giving you travel recommendations</span>
     <span class="signin__text">Welcome Back, Please login to your account</span>
 
     <form class="signin__form">
@@ -199,5 +200,16 @@ export default {
     }
   }
 }
-
+.text {
+  display: block;
+  padding-top: 56px;
+  padding-bottom: 16px;
+  color: var(--green-main);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 150%;
+  @media (max-width: 767px) {
+    padding-top: 32px;
+  }
+}
 </style>

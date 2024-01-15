@@ -30,10 +30,6 @@
             <img class="logo__img" src="/logo.svg" alt="logo" />
             <h1 class="logo__title">Travalizer</h1>
           </div>
-
-          <span class="text"
-            >Artificial Intelligence giving you travel recommendations</span
-          >
         </div>
 
         <div>
@@ -120,17 +116,7 @@
     }
   }
 }
-.text {
-  display: block;
-  padding-top: 56px;
-  color: var(--green-main);
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 150%;
-  @media (max-width: 767px) {
-    padding-top: 32px;
-  }
-}
+
 .center {
   margin: 32px auto;
   display: flex;
