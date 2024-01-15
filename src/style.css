@@ -27,3 +27,8 @@ input {
 .width {
   width: 100%;
 }
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

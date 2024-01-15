@@ -24,9 +24,12 @@ export default {
 
     <div class="list__items">
       <div v-for="lis in list" :key="lis.id" class="list__items-elem">
-        <router-link to="lis.id"></router-link>
-        <div>{{ lis.id }}</div>
-        <img :src="lis.url" alt="image" />
+        <router-link :to="'/list/' + lis.id">
+            {{ this.$route.params.idcard }}
+            <div>{{ lis.id }}</div>
+            <img :src="lis.url" alt="image" />
+            
+        </router-link>
       </div>
     </div>
   </div>
