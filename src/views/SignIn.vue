@@ -66,9 +66,11 @@ export default {
       </div>
 
       <div class="signin__form-buttons">
-        <span class="width">
+        <router-link  class="width" to="list">
             <Button label="Login" />
-        </span>
+        </router-link>
+         
+     
      
         <router-link class="width" to="signup">
             <Button label="Sign Up" lightColor />
