@@ -1,5 +1,9 @@
 <script>
+import Button from '../components/Button.vue';
 export default {
+    components: {
+        Button
+    },
   data() {
     return {
       checked: {
@@ -60,6 +64,12 @@ export default {
 
         <span class="signin__form-checkbox__forgot">Forgot password?</span>
       </div>
+
+      <div class="signin__form-buttons">
+        <Button label="Login" />
+        <Button label="Sign Up" lightColor  />
+      </div>
+     
     </form>
   </div>
 </template>
@@ -111,6 +121,12 @@ export default {
       text-decoration-line: underline;
       cursor: pointer;
     }
+  }
+  &__form-buttons {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    margin-top: 24px;
   }
   &__text {
     color: var(--green-text);
