@@ -6,24 +6,32 @@ export default {
   },
   data() {
     return {
-      checked: {
-        type: Boolean,
-        required: true,
-      },
+      checked: true,
+      email: '',
+      password: '',
+      isAuth: false,
     }
+  },
+  methods: {
+    signup() {
+      this.isAuth = true
+    },
   },
 }
 </script>
 
 <template>
   <div class="signin">
-    <span class="signin__text">Welcome! To use our platform please register</span>
+    <span class="signin__text"
+      >Welcome! To use our platform please register</span
+    >
 
     <form class="signin__form">
       <div class="signin__form-inputs">
         <label class="signin__form-label">
           Your Email
           <input
+            v-model="email"
             class="input"
             type="text"
             placeholder="robert.langster@gmail.com"
@@ -34,6 +42,7 @@ export default {
             Create a password
           </label>
           <input
+            v-model="password"
             class="input"
             type="password"
             name="password"
@@ -62,16 +71,22 @@ export default {
           <div class="signin__form-checkbox__label-text">Remember me</div>
         </label>
         <router-link to="signin">
-            <span class="signin__form-checkbox__forgot">Already registered? If yes, click here</span>
+          <span class="signin__form-checkbox__forgot"
+            >Already registered? If yes, click here</span
+          >
         </router-link>
-
       </div>
 
-      <div class="signin__form-buttons">
-        <router-link class="width" to="List">
-            <Button label="Sign In" lightColor />
+      <div class="signin__form-auth" v-if="isAuth">
+        <span>You have successfully registered!</span>
+        <router-link to="/signin">
+          <Button label="Login using username and password" />
         </router-link>
-        
+      </div>
+      <div class="signin__form-buttons" v-else>
+        <div class="width" @click="signup">
+          <Button label="Sign Up" lightColor />
+        </div>
       </div>
     </form>
 
@@ -134,6 +149,19 @@ export default {
       cursor: pointer;
     }
   }
+  &__form-auth {
+    background-color: var(--beige);
+    color: var(--green-main);
+    padding: 30px 20px;
+    margin: 15px;
+    font-weight: 500;
+    font-size: 25px;
+    border-radius: 8px;
+    & span {
+      display: block;
+      padding-bottom: 10px;
+    }
+  }
   &__form-buttons {
     display: flex;
     gap: 24px;
@@ -152,10 +180,10 @@ export default {
     display: flex;
     gap: 24px;
     margin-top: 56px;
-   
+
     @media (max-width: 767px) {
-        margin-top: 40px;
-        flex-wrap: wrap;
+      margin-top: 40px;
+      flex-wrap: wrap;
     }
     &-name {
       display: block;
@@ -163,14 +191,14 @@ export default {
       font-size: 16px;
       font-weight: 400;
       line-height: 100%;
-   
+
       &_bold {
         color: var(--green-main);
         font-weight: 500;
         &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-    }
+          cursor: pointer;
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -195,5 +223,4 @@ export default {
     }
   }
 }
-
 </style>

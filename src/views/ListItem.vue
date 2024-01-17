@@ -41,6 +41,7 @@ export default {
 .list__item {
     text-align: center;
     margin-top: 20px;
+    width: 100%;
     &-id {
 
         font-size: 36px;
@@ -53,7 +54,7 @@ export default {
     font-weight: 500;
   }
   img {
-    width: 600px;
+    width: 90%;
     height: 520px;
   }
 }
