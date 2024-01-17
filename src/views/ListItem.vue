@@ -1,5 +1,6 @@
 <script>
 import Button from '../components/Button.vue'
+import Loader from '../components/Loader.vue'
 export default {
     data() {
         return {
@@ -17,14 +18,20 @@ export default {
     this.getPhoto()
   },
   components: {
-    Button
+    Button,
+    Loader
   }
   }
 
 </script>
 
 <template>
-  <div class="list__item flex">
+    <div v-if="item === 'Los'" class="margin-100">
+        <Loader />
+    </div>
+    
+    <div v-else class="list__item flex">
+   
     <div class="flex">
         <router-link to="/list">
             <Button label="Сome back" />
@@ -58,4 +65,6 @@ export default {
     height: 520px;
   }
 }
+
+
 </style>

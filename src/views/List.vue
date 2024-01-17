@@ -1,15 +1,24 @@
 <script>
+import Loader from '../components/Loader.vue'
 export default {
+  components: {
+    Loader,
+  },
   data() {
     return {
       list: [],
+      isLoading: false,
     }
   },
   methods: {
-    getPhotos() {
-      fetch('https://jsonplaceholder.typicode.com/photos?_limit=10')
-        .then((res) => res.json())
-        .then((data) => (this.list = data))
+    async getPhotos() {
+      this.isLoading = true
+      const res = await fetch(
+        'https://jsonplaceholder.typicode.com/photos?_limit=10'
+      )
+      const data = await res.json()
+      this.list = data
+      this.isLoading = false
     },
   },
   mounted() {
@@ -19,16 +28,17 @@ export default {
 </script>
 
 <template>
-  <div class="list">
+  <Loader v-if="isLoading" />
+
+  <div v-else class="list">
     <h2 class="list__title">LIST</h2>
 
     <div class="list__items">
       <div v-for="lis in list" :key="lis.id" class="list__items-elem">
         <router-link :to="'/list/' + lis.id">
-            {{ this.$route.params.idcard }}
-            <div>{{ lis.id }}</div>
-            <img :src="lis.url" alt="image" />
-            
+          {{ this.$route.params.idcard }}
+          <div>{{ lis.id }}</div>
+          <img :src="lis.url" alt="image" />
         </router-link>
       </div>
     </div>

@@ -2,7 +2,7 @@
 import Button from '../components/Button.vue'
 import axios from 'axios'
 
-
+const API_KEY = 'AIzaSyDSYW4TBVOROkwj62hhZPbkInamr6-BMZs'
 
 export default {
   components: {
