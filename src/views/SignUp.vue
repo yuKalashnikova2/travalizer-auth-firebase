@@ -1,5 +1,9 @@
 <script>
 import Button from '../components/Button.vue'
+import axios from 'axios'
+
+
+
 export default {
   components: {
     Button,
@@ -13,7 +17,20 @@ export default {
     }
   },
   methods: {
-    signup() {
+    async signup(payload) {
+      try {
+        let response = axios.post(
+          `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
+          {
+            ...payload,
+            returnSecureToken: true,
+          }
+        )
+        console.log(response.data)
+      } catch (error) {
+        console.log('Это ошибка', error.response)
+      }
+
       this.isAuth = true
     },
   },
@@ -84,7 +101,7 @@ export default {
         </router-link>
       </div>
       <div class="signin__form-buttons" v-else>
-        <div class="width" @click="signup">
+        <div class="width" @click="signup({ email, password })">
           <Button label="Sign Up" lightColor />
         </div>
       </div>
@@ -222,5 +239,15 @@ export default {
       background-size: 100%;
     }
   }
+}
+
+.error {
+  color: red;
+  background-color: var(--beige);
+  padding: 30px 20px;
+  margin: 15px;
+  font-weight: 500;
+  font-size: 25px;
+  border-radius: 8px;
 }
 </style>
