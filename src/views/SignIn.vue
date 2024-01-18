@@ -1,50 +1,55 @@
 <script>
 import axios from 'axios'
 import Button from '../components/Button.vue'
+import Error from '../components/Error.vue'
 import { API_KEY } from '../constants.js'
 export default {
   components: {
     Button,
+    Error,
   },
   data() {
     return {
       checked: true,
       emailEnter: '',
-      passwordEnter: ''
+      passwordEnter: '',
+      isError: false,
+      er: '',
     }
   },
   methods: {
     async signin() {
-        try {
-            let res = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
-            {
-                emailEnter: this.emailEnter,
-                passwordEnter: this.passwordEnter,
-                returnSecureToken: true,
+      try {
+        let res = await axios.post(
+          `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
+          {
+            emailS: this.emailEnter,
+            passwordS: this.passwordEnter,
+            returnSecureToken: true,
           },
           {
             headers: {
               'Content-Type': 'application/json',
             },
-          })
-        console.log(res, 'ОТВЕТ РЕГИСТРАЦИИ')
-        } catch (error) {
-            console.log('ОШИБКА ВХОДА', error)
-        } 
-        finally {
-            console.log('сделан запрос на вход', API_KEY)
-        }
-    }
-  }
+          }
+        )
+      } catch (error) {
+        this.isError = true
+        this.er = error.response.data.error.message
+      }
+    },
+  },
 }
 </script>
 
 <template>
   <div class="signin">
-   
-    <span class="text">Artificial Intelligence giving you travel recommendations</span>
+    <span class="text"
+      >Artificial Intelligence giving you travel recommendations</span
+    >
     <span class="signin__text">Welcome Back, Please login to your account</span>
 
+    <Error :er="er" v-if="isError" />
     <form class="signin__form" @submit.prevent>
       <div class="signin__form-inputs">
         <label class="signin__form-label">
@@ -53,7 +58,7 @@ export default {
             v-model="emailEnter"
             class="input"
             type="text"
-            name="emailEnter"
+            name="email"
             placeholder="robert.langster@gmail.com"
           />
         </label>
@@ -65,7 +70,7 @@ export default {
             v-model="passwordEnter"
             class="input"
             type="password"
-            name="passwordEnter"
+            name="passwordr"
             placeholder="Enter your password"
           />
         </div>
@@ -95,16 +100,13 @@ export default {
       </div>
 
       <div class="signin__form-buttons">
-        <router-link  class="width" to="list" @click="signin">
-            <Button label="Login" />
+        <router-link class="width" to="#" @click="signin">
+          <Button label="Login" />
         </router-link>
-         
-     
-     
+
         <router-link class="width" to="signup">
-            <Button label="Sign Up" lightColor />
+          <Button label="Sign Up" lightColor />
         </router-link>
-        
       </div>
     </form>
 
@@ -185,10 +187,10 @@ export default {
     display: flex;
     gap: 24px;
     margin-top: 56px;
-   
+
     @media (max-width: 767px) {
-        margin-top: 40px;
-        flex-wrap: wrap;
+      margin-top: 40px;
+      flex-wrap: wrap;
     }
     &-name {
       display: block;
@@ -196,14 +198,14 @@ export default {
       font-size: 16px;
       font-weight: 400;
       line-height: 100%;
-   
+
       &_bold {
         color: var(--green-main);
         font-weight: 500;
         &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-    }
+          cursor: pointer;
+          text-decoration: underline;
+        }
       }
     }
   }
