@@ -1,43 +1,71 @@
 <script>
+import axios from 'axios'
 import Button from '../components/Button.vue'
+import { API_KEY } from '../constants.js'
 export default {
   components: {
     Button,
   },
   data() {
     return {
-      checked: {
-        type: Boolean,
-        required: true,
-      },
+      checked: true,
+      emailEnter: '',
+      passwordEnter: ''
     }
   },
+  methods: {
+    async signin() {
+        try {
+            let res = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
+            {
+                emailEnter: this.emailEnter,
+                passwordEnter: this.passwordEnter,
+                returnSecureToken: true,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+        console.log(res, 'ОТВЕТ РЕГИСТРАЦИИ')
+        } catch (error) {
+            console.log('ОШИБКА ВХОДА', error)
+        } 
+        finally {
+            console.log('сделан запрос на вход', API_KEY)
+        }
+    }
+  }
 }
 </script>
 
 <template>
   <div class="signin">
+   
     <span class="text">Artificial Intelligence giving you travel recommendations</span>
     <span class="signin__text">Welcome Back, Please login to your account</span>
 
-    <form class="signin__form">
+    <form class="signin__form" @submit.prevent>
       <div class="signin__form-inputs">
         <label class="signin__form-label">
-          Email
+          Email: {{ emailEnter }}
           <input
+            v-model="emailEnter"
             class="input"
             type="text"
+            name="emailEnter"
             placeholder="robert.langster@gmail.com"
           />
         </label>
         <div class="signin__form-label">
           <label for="password" class="signin__form-label_green-text">
-            Password
+            Password: {{ passwordEnter }}
           </label>
           <input
+            v-model="passwordEnter"
             class="input"
             type="password"
-            name="password"
+            name="passwordEnter"
             placeholder="Enter your password"
           />
         </div>
@@ -67,7 +95,7 @@ export default {
       </div>
 
       <div class="signin__form-buttons">
-        <router-link  class="width" to="list">
+        <router-link  class="width" to="list" @click="signin">
             <Button label="Login" />
         </router-link>
          

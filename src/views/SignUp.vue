@@ -1,8 +1,7 @@
 <script>
 import Button from '../components/Button.vue'
 import axios from 'axios'
-
-const API_KEY = 'AIzaSyDSYW4TBVOROkwj62hhZPbkInamr6-BMZs'
+import { API_KEY } from '../constants.js'
 
 export default {
   components: {
@@ -17,20 +16,26 @@ export default {
     }
   },
   methods: {
-    async signup(payload) {
+    async signup() {
       try {
-        let response = axios.post(
+        let response = await axios.post(
           `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
+
           {
-            ...payload,
+            email: this.email,
+            password: this.password,
             returnSecureToken: true,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
           }
         )
-        console.log(response.data)
+        console.log('что в респонсе', response)
       } catch (error) {
-        console.log('Это ошибка', error.response)
+        console.error('Это ошибка', error)
       }
-
       this.isAuth = true
     },
   },
@@ -43,7 +48,7 @@ export default {
       >Welcome! To use our platform please register</span
     >
 
-    <form class="signin__form">
+    <form class="signin__form" @submit.prevent>
       <div class="signin__form-inputs">
         <label class="signin__form-label">
           Your Email
@@ -101,7 +106,7 @@ export default {
         </router-link>
       </div>
       <div class="signin__form-buttons" v-else>
-        <div class="width" @click="signup({ email, password })">
+        <div class="width" @click="signup">
           <Button label="Sign Up" lightColor />
         </div>
       </div>
