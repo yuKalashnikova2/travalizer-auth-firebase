@@ -15,6 +15,7 @@ export default {
       passwordEnter: '',
       isError: false,
       er: '',
+      token: ''
     }
   },
   methods: {
@@ -23,8 +24,8 @@ export default {
         let res = await axios.post(
           `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
           {
-            emailS: this.emailEnter,
-            passwordS: this.passwordEnter,
+            email: this.emailEnter,
+            password: this.passwordEnter,
             returnSecureToken: true,
           },
           {
@@ -33,6 +34,9 @@ export default {
             },
           }
         )
+        this.token = res.data.idToken
+        localStorage.setItem('isAuthenticated', this.token )
+        console.log(res)
       } catch (error) {
         this.isError = true
         this.er = error.response.data.error.message
@@ -100,7 +104,7 @@ export default {
       </div>
 
       <div class="signin__form-buttons">
-        <router-link class="width" to="#" @click="signin">
+        <router-link class="width" to="/list" @click="signin">
           <Button label="Login" />
         </router-link>
 

@@ -32,6 +32,7 @@ export default {
             },
           }
         )
+      
         console.log('что в респонсе', response)
       } catch (error) {
         console.error('Это ошибка', error)
