@@ -1,11 +1,15 @@
 <script>
 import Button from '../components/Button.vue'
+import Input from '../components/Input.vue'
+import Error from '../components/Error.vue'
 import axios from 'axios'
 import { API_KEY } from '../constants.js'
 
 export default {
   components: {
     Button,
+    Input,
+    Error
   },
   data() {
     return {
@@ -13,6 +17,8 @@ export default {
       email: '',
       password: '',
       isAuth: false,
+      isError: false,
+      er: ''
     }
   },
   methods: {
@@ -32,12 +38,14 @@ export default {
             },
           }
         )
-      
+        this.isAuth = true
         console.log('что в респонсе', response)
       } catch (error) {
+        this.isError = true
+        this.er = error.response.data.error.message
         console.error('Это ошибка', error)
       }
-      this.isAuth = true
+   
     },
   },
 }
@@ -48,30 +56,25 @@ export default {
     <span class="signin__text"
       >Welcome! To use our platform please register</span
     >
+   
 
     <form class="signin__form" @submit.prevent>
       <div class="signin__form-inputs">
-        <label class="signin__form-label">
-          Your Email
-          <input
-            v-model="email"
-            class="input"
-            type="text"
-            placeholder="robert.langster@gmail.com"
-          />
-        </label>
-        <div class="signin__form-label">
-          <label for="password" class="signin__form-label_green-text">
-            Create a password
-          </label>
-          <input
-            v-model="password"
-            class="input"
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-          />
-        </div>
+        <Input
+          type="text"
+          v-model:email="email"
+          label="Your email"
+          name="email"
+          placeholder="robert.langster@gmail.com"
+        />
+        <Input
+          :type="password"
+          v-model:password="password"
+          label="Careate password"
+          placeholder="Enter your password"
+          name="password"
+        />
+     
       </div>
 
       <div class="signin__form-checkbox">
@@ -100,13 +103,15 @@ export default {
         </router-link>
       </div>
 
-      <div class="signin__form-auth" v-if="isAuth">
+      <Error :er="er" v-if="isError" />
+
+      <div class="signin__form-auth" v-else-if="isAuth">
         <span>You have successfully registered!</span>
         <router-link to="/signin">
           <Button label="Login using username and password" />
         </router-link>
       </div>
-      <div class="signin__form-buttons" v-else>
+      <div class="signin__form-buttons" >
         <div class="width" @click="signup">
           <Button label="Sign Up" lightColor />
         </div>
@@ -226,34 +231,6 @@ export default {
     }
   }
 }
-.input {
-  border-radius: 8px;
-  border: 1px solid var(--green-light);
-  background: #fff;
-  width: 100%;
-  padding: 16px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 150%;
-  &-checkbox {
-    width: 16px;
-    height: 16px;
-    border: 1px solid var(--green-light);
-    border-radius: 3px;
-    &__checked {
-      background: url('/checkbox-checked.svg');
-      background-size: 100%;
-    }
-  }
-}
 
-.error {
-  color: red;
-  background-color: var(--beige);
-  padding: 30px 20px;
-  margin: 15px;
-  font-weight: 500;
-  font-size: 25px;
-  border-radius: 8px;
-}
+
 </style>

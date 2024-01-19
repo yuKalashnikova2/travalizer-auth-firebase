@@ -1,12 +1,14 @@
 <script>
 import axios from 'axios'
 import Button from '../components/Button.vue'
+import Input from '../components/Input.vue'
 import Error from '../components/Error.vue'
 import { API_KEY } from '../constants.js'
 export default {
   components: {
     Button,
     Error,
+    Input,
   },
   data() {
     return {
@@ -15,7 +17,7 @@ export default {
       passwordEnter: '',
       isError: false,
       er: '',
-      token: ''
+      token: '',
     }
   },
   methods: {
@@ -35,7 +37,7 @@ export default {
           }
         )
         this.token = res.data.idToken
-        localStorage.setItem('isAuthenticated', this.token )
+        localStorage.setItem('isAuthenticated', this.token)
         console.log(res)
       } catch (error) {
         this.isError = true
@@ -56,28 +58,22 @@ export default {
     <Error :er="er" v-if="isError" />
     <form class="signin__form" @submit.prevent>
       <div class="signin__form-inputs">
-        <label class="signin__form-label">
-          Email: {{ emailEnter }}
-          <input
-            v-model="emailEnter"
-            class="input"
-            type="text"
-            name="email"
-            placeholder="robert.langster@gmail.com"
-          />
-        </label>
-        <div class="signin__form-label">
-          <label for="password" class="signin__form-label_green-text">
-            Password: {{ passwordEnter }}
-          </label>
-          <input
-            v-model="passwordEnter"
-            class="input"
-            type="password"
-            name="passwordr"
-            placeholder="Enter your password"
-          />
-        </div>
+        <Input
+          type="text"
+          v-model:email="emailEnter"
+          label="Email"
+          name="email"
+          placeholder="robert.langster@gmail.com"
+        />
+        <Input
+          type="password"
+          v-model:password="passwordEnter"
+       
+          label="Password"
+          placeholder="Enter your password"
+          name="password"
+        />
+
       </div>
 
       <div class="signin__form-checkbox">
@@ -211,26 +207,6 @@ export default {
           text-decoration: underline;
         }
       }
-    }
-  }
-}
-.input {
-  border-radius: 8px;
-  border: 1px solid var(--green-light);
-  background: #fff;
-  width: 100%;
-  padding: 16px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 150%;
-  &-checkbox {
-    width: 16px;
-    height: 16px;
-    border: 1px solid var(--green-light);
-    border-radius: 3px;
-    &__checked {
-      background: url('/checkbox-checked.svg');
-      background-size: 100%;
     }
   }
 }
