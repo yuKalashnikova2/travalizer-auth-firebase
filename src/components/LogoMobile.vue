@@ -1,19 +1,5 @@
-<script>
-import Logo from './components/Logo.vue'
-import LogoMobile from './components/LogoMobile.vue';
-export default {
-  components: {
-    Logo,
-    LogoMobile
-  }
-}
-</script>
-
 <template>
-  <div class="container">
-    <div class="wrapper">
-      <LogoMobile />
-      <!-- <div class="logo__mobile">
+      <div class="logo__mobile">
         <div class="center">
           <svg
             class="logo__mobile-image"
@@ -33,96 +19,5 @@ export default {
 
           <h1 class="logo__mobile-title">Travalizer</h1>
         </div>
-      </div> -->
-      <div class="wrapper__description">
-        <div>
-          <Logo />
-        </div>
-
-        <div>
-          <router-view></router-view>
-        </div>
       </div>
-
-      <div class="wrapper__image">
-        <img src="/travel.svg" alt="" />
-      </div>
-    </div>
-  </div>
 </template>
-
-<style lang="scss" scoped>
-.container {
-  margin: 30px 25px;
-  max-width: 1296px;
-}
-.wrapper {
-  background-color: var(--white);
-  border-radius: 24px;
-  box-shadow: 0px 72px 80px -48px #223a28;
-  overflow: hidden;
-  display: flex;
-  justify-content: space-between;
-  @media (max-width: 767px) {
-    flex-direction: column;
-  }
-  &__description {
-    padding: 40px 64px 66px 64px;
-    @media (max-width: 767px) {
-      order: 2;
-    }
-  }
-  &__image {
-    background-color: var(--beige);
-    @media (max-width: 767px) {
-      order: 1;
-    }
-    & img {
-      padding: 188px 123px;
-      width: 100%;
-      @media (max-width: 767px) {
-        padding: 35px 98px 30px 101px;
-      }
-    }
-  }
-}
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  @media (max-width: 767px) {
-    display: none;
-  }
-  &__img {
-    width: 48px;
-    height: 48px;
-  }
-  &__title {
-    color: var(--green-main);
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 100%;
-  }
-  &__mobile {
-    display: flex;
-    gap: 16px;
-    background-color: var(--green-main);
-    width: 100%;
-    @media (min-width: 768px) {
-      display: none;
-    }
-    &-image {
-      width: 48px;
-      height: 48px;
-    }
-    &-title {
-      color: #fff;
-      font-size: 32px;
-      font-weight: 600;
-      line-height: 100%;
-    }
-  }
-}
-
-
-</style>
