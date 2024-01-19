@@ -53,13 +53,11 @@ export default {
 </script>
 
 <template>
-  <div class="signin">
-    <span class="signin__text"
-      >Welcome! To use our platform please register</span
-    >
+  <div class="auth">
+    <span class="auth__text">Welcome! To use our platform please register</span>
 
-    <form class="signin__form" @submit.prevent>
-      <div class="signin__form-inputs">
+    <form class="auth__form" @submit.prevent>
+      <div class="auth__form-inputs">
         <Input
           type="text"
           v-model:email="email"
@@ -92,130 +90,28 @@ export default {
 
       <Error :er="er" v-if="isError" />
 
-      <div class="signin__form-auth" v-else-if="isAuth">
+      <div class="auth__form-auth" v-else-if="isAuth">
         <span>You have successfully registered!</span>
         <router-link to="/signin">
           <Button label="Login using username and password" />
         </router-link>
       </div>
-      <div class="signin__form-buttons">
+      <div class="auth__form-buttons">
         <div class="width" @click="signup">
           <Button label="Sign Up" lightColor />
         </div>
       </div>
     </form>
 
-    <div class="signin__social">
-      <span class="signin__social-name">Or, register with</span>
-      <span class="signin__social-name signin__social-name_bold">Facebook</span>
-      <span class="signin__social-name signin__social-name_bold"
-        >Linked In</span
-      >
-      <span class="signin__social-name signin__social-name_bold">Google</span>
+    <div class="auth__social">
+      <span class="auth__social-name">Or, register with</span>
+      <span class="auth__social-name auth__social-name_bold">Facebook</span>
+      <span class="auth__social-name auth__social-name_bold">Linked In</span>
+      <span class="auth__social-name auth__social-name_bold">Google</span>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.signin {
-  margin-top: 16px;
-  &__form-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-bottom: 24px;
-  }
-  &__form-label {
-    color: var(--blue-dark);
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    &_green-text {
-      color: var(--green-main);
-    }
-  }
-  &__form-checkbox {
-    display: flex;
-    justify-content: space-between;
-    &__label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      &-text {
-        color: var(--green-main);
-
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 100%;
-      }
-    }
-    &__forgot {
-      color: var(--green-main);
-      text-align: right;
-
-      font-size: 16px;
-
-      font-weight: 400;
-      line-height: 100%;
-      text-decoration-line: underline;
-      cursor: pointer;
-    }
-  }
-  &__form-auth {
-    background-color: var(--beige);
-    color: var(--green-main);
-    padding: 30px 20px;
-    margin: 15px;
-    font-weight: 500;
-    font-size: 25px;
-    border-radius: 8px;
-    & span {
-      display: block;
-      padding-bottom: 10px;
-    }
-  }
-  &__form-buttons {
-    display: flex;
-    gap: 24px;
-    width: 100%;
-    margin-top: 24px;
-  }
-  &__text {
-    color: var(--green-text);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 100%;
-    display: block;
-    padding-bottom: 32px;
-  }
-  &__social {
-    display: flex;
-    gap: 24px;
-    margin-top: 56px;
-
-    @media (max-width: 767px) {
-      margin-top: 40px;
-      flex-wrap: wrap;
-    }
-    &-name {
-      display: block;
-      color: var(--green-text);
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 100%;
-
-      &_bold {
-        color: var(--green-main);
-        font-weight: 500;
-        &:hover {
-          cursor: pointer;
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-}
+@import url('../assets/auth_styles.scss');
 </style>
