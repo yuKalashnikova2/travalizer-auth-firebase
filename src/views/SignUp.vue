@@ -1,6 +1,7 @@
 <script>
 import Button from '../components/Button.vue'
 import Input from '../components/Input.vue'
+import Checkbox from '../components/Checkbox.vue'
 import Error from '../components/Error.vue'
 import axios from 'axios'
 import { API_KEY } from '../constants.js'
@@ -9,7 +10,8 @@ export default {
   components: {
     Button,
     Input,
-    Error
+    Error,
+    Checkbox,
   },
   data() {
     return {
@@ -18,7 +20,7 @@ export default {
       password: '',
       isAuth: false,
       isError: false,
-      er: ''
+      er: '',
     }
   },
   methods: {
@@ -45,7 +47,6 @@ export default {
         this.er = error.response.data.error.message
         console.error('Это ошибка', error)
       }
-   
     },
   },
 }
@@ -56,7 +57,6 @@ export default {
     <span class="signin__text"
       >Welcome! To use our platform please register</span
     >
-   
 
     <form class="signin__form" @submit.prevent>
       <div class="signin__form-inputs">
@@ -74,30 +74,17 @@ export default {
           placeholder="Enter your password"
           name="password"
         />
-     
       </div>
 
-      <div class="signin__form-checkbox">
-        <label class="signin__form-checkbox__label">
-          <div
-            :class="[
-              'input-checkbox',
-              checked ? 'input-checkbox__checked' : '',
-            ]"
-          >
-            <input
-              type="checkbox"
-              :checked="checked"
-              name="name"
-              value="value"
-              @click="checked = !checked"
-            />
-          </div>
-
-          <div class="signin__form-checkbox__label-text">Remember me</div>
-        </label>
+      <div class="flex-justify">
+        <Checkbox
+          @update="checked = !checked"
+          :checked="checked"
+          name="Remember"
+          labelText="Remember me"
+        />
         <router-link to="signin">
-          <span class="signin__form-checkbox__forgot"
+          <span class="text__question ml-10"
             >Already registered? If yes, click here</span
           >
         </router-link>
@@ -111,7 +98,7 @@ export default {
           <Button label="Login using username and password" />
         </router-link>
       </div>
-      <div class="signin__form-buttons" >
+      <div class="signin__form-buttons">
         <div class="width" @click="signup">
           <Button label="Sign Up" lightColor />
         </div>
@@ -231,6 +218,4 @@ export default {
     }
   }
 }
-
-
 </style>

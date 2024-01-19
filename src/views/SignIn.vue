@@ -3,16 +3,18 @@ import axios from 'axios'
 import Button from '../components/Button.vue'
 import Input from '../components/Input.vue'
 import Error from '../components/Error.vue'
+import Checkbox from '../components/Checkbox.vue'
 import { API_KEY } from '../constants.js'
 export default {
   components: {
     Button,
     Error,
     Input,
+    Checkbox
   },
   data() {
     return {
-      checked: true,
+      checkedActive: true,
       emailEnter: '',
       passwordEnter: '',
       isError: false,
@@ -44,6 +46,7 @@ export default {
         this.er = error.response.data.error.message
       }
     },
+
   },
 }
 </script>
@@ -76,28 +79,19 @@ export default {
 
       </div>
 
-      <div class="signin__form-checkbox">
-        <label class="signin__form-checkbox__label">
-          <div
-            :class="[
-              'input-checkbox',
-              checked ? 'input-checkbox__checked' : '',
-            ]"
-          >
-            <input
-              type="checkbox"
-              :checked="checked"
-              name="name"
-              value="value"
-              @click="checked = !checked"
-            />
-          </div>
-
-          <div class="signin__form-checkbox__label-text">Remember me</div>
-        </label>
-
-        <span class="signin__form-checkbox__forgot">Forgot password?</span>
+      <div class="flex-justify ">
+        <Checkbox @update="checkedActive = !checkedActive"
+      :checked="checkedActive"
+      name="Remember"
+      labelText="Remember me"
+      />
+      <router-link to="#">
+        <span class="text__question">Forgot password?</span>
+       </router-link>
       </div>
+     
+     
+
 
       <div class="signin__form-buttons">
         <router-link class="width" to="/list" @click="signin">

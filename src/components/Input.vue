@@ -71,15 +71,6 @@ export default {
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
-  &-checkbox {
-    width: 16px;
-    height: 16px;
-    border: 1px solid var(--green-light);
-    border-radius: 3px;
-    &__checked {
-      background: url('/checkbox-checked.svg');
-      background-size: 100%;
-    }
-  }
+
 }
 </style>
