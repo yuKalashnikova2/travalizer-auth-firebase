@@ -61,16 +61,21 @@ export default {
   &_green-text {
     color: var(--green-main);
   }
+  @media (max-width: 400px) {
+    font-size: 20px;
+  }
 }
 .input {
   border-radius: 8px;
   border: 1px solid var(--green-light);
   background: #fff;
-  width: 100%;
   padding: 16px;
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
+  @media (max-width: 400px) {
+    font-size: 20px;
+  }
 
 }
 </style>

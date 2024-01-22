@@ -16,6 +16,10 @@
   margin: 0;
   padding: 0;
 }
+a {
+  display: block;
+  text-decoration: none;
+}
 body {
   background-color: var(--green-main);
   font-family: 'Inter', sans-serif;
@@ -34,6 +38,15 @@ input {
 .flex-justify {
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 400px) {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+
+
+  }
 }
 .margin-100 {
   margin: 100px;
@@ -49,4 +62,8 @@ input {
   line-height: 100%;
   text-decoration-line: underline;
   cursor: pointer;
+  @media (max-width: 400px) {
+    text-align: left;
+    font-size: 20px;
+  }
 }

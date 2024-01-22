@@ -68,7 +68,7 @@ export default {
         <Input
           :type="password"
           v-model:password="password"
-          label="Careate password"
+          label="Сreate password"
           placeholder="Enter your password"
           name="password"
         />

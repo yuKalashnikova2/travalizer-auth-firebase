@@ -29,6 +29,9 @@ export default {
   line-height: 100%;
     width: 100%;
   cursor: pointer;
+  @media (max-width: 400px) {
+    font-size: 20px;
+  }
   &:hover {
     border: 1px solid var(--green-second);
     background: var(--white);

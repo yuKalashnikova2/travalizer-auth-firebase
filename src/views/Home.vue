@@ -25,9 +25,15 @@ export default {
 <style lang="scss" scoped>
 .home-page {
   padding: 100px 30px;
+  @media (max-width: 1024px) {
+        padding: 30px 0;
+      }
   &__title {
     color: var(--green-main);
     text-align: center;
+    @media (max-width: 400px) {
+        font-size: 20px;
+      }
   }
   &__buttons {
     display: flex;

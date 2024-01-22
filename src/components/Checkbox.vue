@@ -49,18 +49,23 @@ export default {
     gap: 8px;
     &-text {
       color: var(--green-main);
-
       font-size: 16px;
       font-weight: 400;
       line-height: 100%;
+      @media (max-width: 400px) {
+        font-size: 20px;
+      }
     }
   }
 }
 .checkbox {
   width: 16px;
   height: 16px;
-  border: 1px solid var(--green-light);
   border-radius: 3px;
+  @media (max-width: 400px) {
+    width: 20px;
+    height: 20px;
+  }
   &__checked {
     background: url('/checkbox-checked.svg');
     background-size: 100%;
