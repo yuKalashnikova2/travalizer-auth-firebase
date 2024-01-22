@@ -10,10 +10,15 @@ export default {
       required: false,
     },
   },
+  computed: {
+    styleBtnColor(lightColor) {
+        return lightColor ? 'btn__light' : ''
+    }
+  }
 }
 </script>
 <template>
-  <button :class="['btn', lightColor ? 'btn__light' : '']">{{ label }}</button>
+  <button :class="['btn', styleBtnColor]">{{ label }}</button>
 </template>
 
 <style lang="scss" scoped>
