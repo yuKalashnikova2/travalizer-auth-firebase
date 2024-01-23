@@ -41,6 +41,8 @@ export default {
           }
         )
         this.isAuth = true
+        this.email = ''
+        this.password = ''
         console.log('что в респонсе', response)
       } catch (error) {
         this.isError = true
@@ -66,7 +68,7 @@ export default {
           placeholder="robert.langster@gmail.com"
         />
         <Input
-          :type="password"
+          type="password"
           v-model:password="password"
           label="Сreate password"
           placeholder="Enter your password"
