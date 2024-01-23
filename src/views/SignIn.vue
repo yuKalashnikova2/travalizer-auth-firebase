@@ -4,6 +4,7 @@ import Button from '../components/Button.vue'
 import Input from '../components/Input.vue'
 import Error from '../components/Error.vue'
 import Checkbox from '../components/Checkbox.vue'
+import Loader from '../components/Loader.vue'
 import { API_KEY } from '../constants.js'
 export default {
   components: {
@@ -11,6 +12,7 @@ export default {
     Error,
     Input,
     Checkbox,
+    Loader,
   },
   data() {
     return {
@@ -20,11 +22,13 @@ export default {
       isError: false,
       er: '',
       token: '',
+      isLoading: false,
     }
   },
   methods: {
     async signin() {
       try {
+        this.isLoading = true
         let res = await axios.post(
           `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
           {
@@ -40,10 +44,13 @@ export default {
         )
         this.token = res.data.idToken
         localStorage.setItem('isAuthenticated', this.token)
+
         console.log(res)
       } catch (error) {
         this.isError = true
         this.er = error.response.data.error.message
+      } finally {
+        this.isLoading = false
       }
     },
   },
@@ -56,20 +63,20 @@ export default {
       >Artificial Intelligence giving you travel recommendations</span
     >
     <span class="auth__text">Welcome Back, Please login to your account</span>
-
+    <Loader v-if="isLoading" />
     <Error :er="er" v-if="isError" />
     <form class="auth__form" @submit.prevent>
       <div class="auth__form-inputs">
         <Input
           type="text"
-          v-model:email="emailEnter"
+          v-model:enterText.trim="emailEnter"
           label="Email"
           name="email"
           placeholder="robert.langster@gmail.com"
         />
         <Input
           type="password"
-          v-model:password="passwordEnter"
+          v-model:enterText.trim="passwordEnter"
           label="Password"
           placeholder="Enter your password"
           name="password"
@@ -110,5 +117,4 @@ export default {
 
 <style lang="scss" scoped>
 @import url('../assets/auth_styles.scss');
-
 </style>

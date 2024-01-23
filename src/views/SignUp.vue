@@ -3,6 +3,7 @@ import Button from '../components/Button.vue'
 import Input from '../components/Input.vue'
 import Checkbox from '../components/Checkbox.vue'
 import Error from '../components/Error.vue'
+import Loader from '../components/Loader.vue'
 import axios from 'axios'
 import { API_KEY } from '../constants.js'
 
@@ -12,6 +13,7 @@ export default {
     Input,
     Error,
     Checkbox,
+    Loader,
   },
   data() {
     return {
@@ -21,11 +23,13 @@ export default {
       isAuth: false,
       isError: false,
       er: '',
+      isLoading: false,
     }
   },
   methods: {
     async signup() {
       try {
+        this.isLoading = true
         let response = await axios.post(
           `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
 
@@ -48,6 +52,8 @@ export default {
         this.isError = true
         this.er = error.response.data.error.message
         console.error('Это ошибка', error)
+      } finally {
+        this.isLoading = false
       }
     },
   },
@@ -57,19 +63,19 @@ export default {
 <template>
   <div class="auth">
     <span class="auth__text">Welcome! To use our platform please register</span>
-
+    {{ enterText }} {{ email }} {{ password }}
     <form class="auth__form" @submit.prevent>
       <div class="auth__form-inputs">
         <Input
           type="text"
-          v-model:email="email"
+          v-model:enterText.trim="email"
           label="Your email"
           name="email"
           placeholder="robert.langster@gmail.com"
         />
         <Input
           type="password"
-          v-model:password="password"
+          v-model:enterText.trim="password"
           label="Сreate password"
           placeholder="Enter your password"
           name="password"
@@ -89,6 +95,7 @@ export default {
           >
         </router-link>
       </div>
+      <Loader v-if="isLoading" />
 
       <Error :er="er" v-if="isError" />
 

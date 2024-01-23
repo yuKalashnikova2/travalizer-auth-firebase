@@ -13,22 +13,25 @@ export default {
       type: String,
       default: 'Name',
     },
-
-    email: {
-      type: String,
-      required: false,
+    enterText: {
+        type: String,
+        required: false
     },
-    password: {
-      type: String,
-      required: false,
-    },
+    // email: {
+    //   type: String,
+    //   required: false,
+    // },
+    // password: {
+    //   type: String,
+    //   required: false,
+    // },
 
     placeholder: {
       type: String,
       default: 'Enter data...',
     },
   },
-  emits: ['update:email', 'update:password'],
+  emits: ['update:enterText'],
 }
 </script>
 
@@ -40,10 +43,9 @@ export default {
       :type="type"
       :name="name"
       :placeholder="placeholder"
-      :value="[email || password]"
+      :value="enterText"
       @input="
-        $emit('update:email', $event.target.value),
-          $emit('update:password', $event.target.value)
+        $emit('update:enterText', $event.target.value)
       "
     />
   </div>
