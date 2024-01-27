@@ -62,10 +62,13 @@ export default {
 
 <template>
   <div class="auth">
+    <span class="auth__subtitle"
+      >Artificial Intelligence giving you travel recommendations</span
+    >
     <span class="auth__text">Welcome! To use our platform please register</span>
-    {{ enterText }} {{ email }} {{ password }}
+
     <form class="auth__form" @submit.prevent>
-      <div class="auth__form-inputs">
+      <div class="auth__form-inputs" v-if="!isLoading">
         <Input
           type="text"
           v-model:enterText.trim="email"
@@ -82,7 +85,7 @@ export default {
         />
       </div>
 
-      <div class="flex-justify">
+      <div class="flex-justify" v-if="!isLoading">
         <Checkbox
           @update="checked = !checked"
           :checked="checked"
@@ -91,7 +94,7 @@ export default {
         />
         <router-link to="signin">
           <span class="text__question ml-10"
-            >Already registered? If yes, click here</span
+            >I'm already registered</span
           >
         </router-link>
       </div>
@@ -105,7 +108,7 @@ export default {
           <Button label="Login using username and password" />
         </router-link>
       </div>
-      <div class="auth__form-buttons">
+      <div class="auth__form-buttons" v-if="!isLoading">
         <div class="width" @click="signup">
           <Button label="Sign Up" lightColor />
         </div>

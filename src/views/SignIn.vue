@@ -58,7 +58,7 @@ export default {
 </script>
 
 <template>
-  <div class="auth">
+    <div class="auth">
     <span class="auth__subtitle"
       >Artificial Intelligence giving you travel recommendations</span
     >

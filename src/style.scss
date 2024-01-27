@@ -13,7 +13,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
 }
 a {
@@ -27,13 +26,11 @@ body {
 input {
   all: unset;
 }
+h1, h2 {
+  margin: 0;
+}
 .width {
   width: 100%;
-}
-.flex {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 .flex-justify {
   display: flex;

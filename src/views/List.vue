@@ -47,12 +47,12 @@ export default {
 
 <style lang="scss" scoped>
 .list {
-  padding: 30px;
+  padding-top: 30px;
+
   &__title {
     color: var(--green-main);
     font-size: 60px;
     font-weight: 500;
-    text-align: center;
   }
   &__items {
     display: flex;

@@ -17,29 +17,25 @@ export default {
         <div>
           <Logo />
         </div>
-
-        <div>
-          <router-view></router-view>
-        </div>
+        <router-view name="a"></router-view>
       </div>
-
-      <div class="wrapper__image">
-        <img src="/travel.svg" alt="" />
-      </div>
+      <router-view name="travalizer"></router-view>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .container {
-  margin: 30px auto;
-  max-width: 1296px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @media (max-width: 992px) {
     flex-direction: column;
     margin: 0 auto;
   }
 }
 .wrapper {
+  margin: auto;
   background-color: var(--white);
   border-radius: 24px;
   box-shadow: 0px 72px 80px -48px #223a28;
@@ -52,24 +48,31 @@ export default {
   }
   &__description {
     padding: 40px 64px 66px 64px;
-   
+
+    @media (min-width: 993px) and (max-width: 1300px) {
+      padding: 40px 30px;
+      min-width: 500px;
+    }
     @media (max-width: 992px) {
       order: 2;
       padding: 40px 30px;
     }
-     @media (max-width: 500px) {
+    @media (max-width: 500px) {
       padding: 20px 15px;
     }
-
   }
   &__image {
+    width: 100%;
     background-color: var(--beige);
+    display: flex;
+    align-items: center;
     @media (max-width: 767px) {
       order: 1;
     }
     & img {
-      padding: 188px 123px;
       width: 100%;
+      padding-left: 120px;
+      padding-right: 120px;
       @media (min-width: 768px) and (max-width: 1024px) {
         padding: 35px 70px;
       }

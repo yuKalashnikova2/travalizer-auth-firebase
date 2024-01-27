@@ -4,7 +4,7 @@ import List from '../views/List.vue'
 import ListItem from '../views/ListItem.vue'
 import SignIn from '../views/SignIn.vue'
 import SignUp from '../views/SignUp.vue'
-
+import ImageTravalizer from '../views/ImageTravalizer.vue'
 const isAuthenticated = localStorage.getItem('isAuthenticated')
 
 const router = createRouter({
@@ -12,15 +12,36 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      components: {
+        default: Home,
+        a: Home,
+        travalizer: ImageTravalizer
+      },
+    },
+    {
+      path: '/signin',
+      components: {
+        default: SignIn,
+        a: SignIn,
+        travalizer: ImageTravalizer
+      },
+    },
+    {
+      path: '/signup',
+      components: {
+        default: SignUp,
+        a: SignUp,
+        travalizer: ImageTravalizer
+      },
     },
     {
       path: '/list',
-      name: 'list',
-      component: List,
+      components: {
+        default: List,
+        a: List,
 
-      beforeEnter: (to, from, next) => {
+      },
+        beforeEnter: (to, from, next) => {
         if (!isAuthenticated) {
           next('/signin')
         } else {
@@ -31,18 +52,18 @@ const router = createRouter({
     },
     {
       path: '/list/:idcard',
-      name: 'listitem',
-      component: ListItem,
-    },
-    {
-      path: '/signin',
-      name: 'signin',
-      component: SignIn,
-    },
-    {
-      path: '/signup',
-      name: 'signup',
-      component: SignUp,
+      components: {
+        default: ListItem,
+        a: ListItem,
+      },
+      beforeEnter: (to, from, next) => {
+        if (!isAuthenticated) {
+          next('/signin')
+        } else {
+          next()
+        }
+        return false
+      },
     },
   ],
 })

@@ -62,13 +62,16 @@ export default {
   width: 16px;
   height: 16px;
   border-radius: 3px;
+  border: 1px solid var(--green-second);
   @media (max-width: 400px) {
-    width: 20px;
-    height: 20px;
+    width: 19px;
+    height: 19px;
   }
   &__checked {
-    background: url('/checkbox-checked.svg');
-    background-size: 100%;
+    background-image: url('/checkbox-checked.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
   }
 }
 </style>
