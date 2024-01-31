@@ -27,6 +27,8 @@ export default {
 <style lang="scss">
 .container {
   display: flex;
+  width: 100%;
+  height: 100vh;
   justify-content: center;
   align-items: center;
   @media (max-width: 992px) {
@@ -62,7 +64,6 @@ export default {
     }
   }
   &__image {
-    width: 100%;
     background-color: var(--beige);
     display: flex;
     align-items: center;
@@ -71,14 +72,8 @@ export default {
     }
     & img {
       width: 100%;
-      padding-left: 120px;
-      padding-right: 120px;
-      @media (min-width: 768px) and (max-width: 1024px) {
-        padding: 35px 70px;
-      }
-      @media (max-width: 767px) {
-        padding: 35px 98px 30px 101px;
-      }
+      object-fit: cover;
+      padding: 35px 70px;
       @media (max-width: 400px) {
         padding: 10px;
       }
