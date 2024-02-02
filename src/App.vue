@@ -34,9 +34,11 @@ export default {
   @media (max-width: 992px) {
     flex-direction: column;
     margin: 0 auto;
+    height: auto;
   }
 }
 .wrapper {
+
   margin: auto;
   background-color: var(--white);
   border-radius: 24px;
